@@ -1,6 +1,11 @@
 const { Schema, model } = require('../config/db-connection');
 
-const userSchema = Schema({
+const charSchema = Schema({
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   email: {
     type: String,
     required: true,
@@ -14,4 +19,4 @@ const userSchema = Schema({
   },
 });
 
-module.exports = model('User', userSchema);
+module.exports = model('Char', charSchema);
