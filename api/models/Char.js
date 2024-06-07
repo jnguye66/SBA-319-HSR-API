@@ -12,7 +12,8 @@ const charSchema = Schema({
     type: String,
     required: true,
     unique: true,
-    min: 5,
+    // Validation Rule
+    min: [5, 'Username must be at least 5 characters long.'],
   },
 
   email: {
