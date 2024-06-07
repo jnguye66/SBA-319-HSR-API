@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 8000;
 const charRouter = require('./routes/chars.js');
 // Enemy Router
 const enemyRouter = require('./routes/enemy.js');
+// Aeon Router
 
 // Configuring the server to accept and parse JSON data.
 app.use(express.json());
