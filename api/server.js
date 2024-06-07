@@ -6,8 +6,12 @@ const express = require('express');
 const app = express();
 // Port in which the server will run on
 const PORT = process.env.PORT || 8000;
-// Requiring example router
-const charRouter = require('./routes/char.js');
+
+// Requiring Routers //
+// Character Router
+const charRouter = require('./routes/chars.js');
+// Enemy Router
+const enemyRouter = require('./routes/enemy.js');
 
 // Configuring the server to accept and parse JSON data.
 app.use(express.json());
@@ -21,9 +25,16 @@ app.use((req, res, next) => {
 // Connecting the router to the server
 app.use('/chars', charRouter);
 
+// Base Route //
+app.get('/', (req, res) => {
+  res.json({
+    message: "Welcome to the Honkai Star Rail API!"
+  });
+});
+
 // Error Handling Middlware
 app.use((err, req, res, next) => {
-  res.status(500).send('Something went wrong.');
+  res.status(500).send(err);
 });
 
 // Calling the listen function telling the server to listen on port 3000
