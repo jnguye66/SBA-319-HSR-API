@@ -6,6 +6,8 @@ const mongoose = require('./db-connection.js');
 const Char = require('../models/Char.js');
 // Enemy Model
 const Enemy = require('../models/Enemy.js');
+// Aeon Model
+const Aeon = require('../models/Aeon.js');
 
 const chars = [
     {
@@ -111,21 +113,57 @@ const enemies = [
         weakness: ["Fire", "Ice", "Quantum"],
         desc: "An auspicious spritual beast wrought into being by the Ambrosial Arbor and protects its roots. Its arrival brings along exuberant vegetation and promises good fortune. Once destroyed during ancient wras, the Ambrosial Arbor is mended by the Stellaron and finally revives. Rare creatures and legendary beasts made by celestials of the past all return to this world, like an old dream coming alive again."
     },
+];
+
+const aeons = [
+    {
+        name: "Akivili",
+        path: "The Trailblaze",
+        quote: "Countless shooting stars streak across the night sky... If you can pick the right one, it will carry your wish to thousands of distant worlds.",
+        desc: "There are three directions on the compass of desinty - the Unknown, the Known, and the Unknowable. THEY can tolerate the Unknown, but will never bow to the Unknowable. Akivili left the isolated world of Pegana and continued to expand the unknown edges o the universe, trying to find an endpoint of the Tree of Existence. Unfortunately, Akivili's destiny was abruptly ended due to an accident."
+    },
+    {
+        name: "Nanook",
+        path: "The Destruction",
+        quote: "If the increase of entropy is a fundamental law of the universe, then the heat death would be the inescapable destiny o the material world. So, why is it that we bother to struggle to survive? Expansion, fusion, and then annihilation. If we with to welcome the new, then we must first embrace the end.",
+        desc: "The birth of the universe is a mistake. If civilization is a cancer emerging quietly from the boundless stars, then war is the only common language known to all intelligent life. To crrect this mistake and to clean up this tainted universe, Nanook became the avatar of entropy."
+    },
+    {
+        name: "Lan",
+        path: "The Hunt",
+        quote: "With no end to hate and no boundaries to war, how much concern do you shoulder? With determined eyes an the arrow drawn, the Reignbow Arbiter needs not turn back hither.",
+        desc: "The Aeon known as the Reignbow Arbiter wanders endlessly between worlds to destroy the undead beings that once poisoned their homeworld. The cost of the hunt was never a consideration for Lan. There is often no difference between the salvation they offer and total destruction."
+    },
+    {
+        name: "Nous",
+        path: "The Erudition",
+        quote: "If the truth of the universe is cruel and stale, would you still yearn for the answer to the ultimate question? Knowledge seekers know not how to judge, for their core is cold and unwavering... As are the ends of Paths they set out to seek.",
+        desc: "All things bear unanswered questions, and t here is an answer to everything. The astral computer originally meant to provide answers to the universe ascended to Aeonhood. Nous hopes to understnad the universe and solve all of its mysteries."
+    },
+    {
+        name: "Qlipoth",
+        path: "The Preservation",
+        quote: "The philosopher gazes upon the stars trying to find the ultimate goal of civilization - 'Build a wall.' A majestic voice echoed in his head. 'Build a wall.'",
+        desc: "The builder of the Celestial Comet Wall, the Subspace Crystalline Barrier, and the Great Attractor Base. Followers call THEM the 'Amber Lord,' one of the oldest and most tenacious Aeons, having survived the 'Dusk Wars.' Aware of the imminence of THEIR moratl enemy's devouring, the Amber Lord forged a powerful light-years-long seal that would isolate and protect the living worlds."
+    },
 ]
 
 async function seed() {
     try {
         // Delete pre-existing data to start with clean slate and no repeated data
         await Char.deleteMany({});
-        await Enemy.deleteMany({})
+        await Enemy.deleteMany({});
+        await Aeon.deleteMany({});
 
         // Create the data that were predeteremined
         const createdChars = await Char.create(chars);
         const createdEnemies = await Enemy.create(enemies);
+        const createdAeons = await Aeon.create(aeons);
 
         // Just shows the data that were added to MongoDB Compass
         console.log('Characters: ', createdChars);
-        console.log('Enemies:', createdEnemies );
+        console.log('Enemies: ', createdEnemies);
+        console.log('Aeons: ', createdAeons);
 
         // End the mongoose connection, aka run this function once to not allow it to repeat
         await mongoose.connection.close();
