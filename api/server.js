@@ -24,6 +24,7 @@ app.use((req, res, next) => {
 
 // Connecting the router to the server
 app.use('/chars', charRouter);
+app.use('/enemies', enemyRouter);
 
 // Base Route //
 app.get('/', (req, res) => {

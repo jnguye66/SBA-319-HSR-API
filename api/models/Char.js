@@ -32,4 +32,7 @@ const charSchema = Schema({
   element: { type: String, required: true },
 });
 
+// Index to sort by name in asc order
+charSchema.index({ name: 1, type: 1 });
+
 module.exports = model('Char', charSchema);
