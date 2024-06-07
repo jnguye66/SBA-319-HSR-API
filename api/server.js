@@ -13,6 +13,7 @@ const charRouter = require('./routes/chars.js');
 // Enemy Router
 const enemyRouter = require('./routes/enemy.js');
 // Aeon Router
+const aeonRouter = require('./routes/aeon.js');
 
 // Configuring the server to accept and parse JSON data.
 app.use(express.json());
@@ -24,8 +25,12 @@ app.use((req, res, next) => {
 });
 
 // Connecting the router to the server
+// Characters router @ /chars
 app.use('/chars', charRouter);
+// Enemies router @ /enemies
 app.use('/enemies', enemyRouter);
+// Aeons router @ /aeons
+app.use('/aeons', aeonRouter);
 
 // Base Route //
 app.get('/', (req, res) => {
